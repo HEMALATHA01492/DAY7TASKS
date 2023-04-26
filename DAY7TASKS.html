@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DAY 7 TASKS</h1>
+    <h2>ARRAY METHODS</h2>
+    <script>
+        console.log("DAY 7 TASKS BY HEMALATHA")
+        const xhr=new XMLHttpRequest();
+        xhr.open('GET',"https://restcountries.com/v3.1/all");
+        xhr.onload = function () {
+            let data=JSON.parse(xhr.response)
+           console.log("TOTAL COUNTRIES DETAILS:",data)
+            console.log("1.Get all the countries from the Asia continent /region using the Filter function");
+            let country=data.filter((e)=>{
+                    if(e.continents[0]=='Asia'|| e.region=='Asia')
+                    return true
+                    else
+                    return false
+
+                })
+                console.log(country)
+            console.log("2.Get all the countries with a population of less than 2 lakhs using Filter function");
+            let country1=data.filter((e)=>{
+                    if(e.population<200000)
+                    return true
+                    else
+                    return false
+
+                })
+                console.log(country1)
+                console.log("3.Print the following details name, capital, flag,flag URL using forEach function");
+                let coun = data.forEach((e)=> {
+                    console.log(e.name.common,e.capital,e.flag,e.flags)
+                    
+                });
+                console.log("4.Print the total population of countries using reduce function");
+                let country2=data.map((e)=>e.population)
+                console.log(country2)
+                 let sum=country2.reduce((n1,n2)=>{
+                    return n1+n2;
+                 })
+                 console.log("TOTAL POPULATION:",sum)
+                 console.log("5.Print the country which uses US Dollars as currency");
+                let currency=data.forEach((e)=>{
+                    if(true){
+                        e.currencies="US Dollars"
+                        console.log(`${e.name.common} - ${e.currencies}`);
+                    }
+                })
+                
+
+        }
+        xhr.send();
+    </script>
+</body>
+</html>
